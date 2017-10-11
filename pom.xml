@@ -5,9 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cfoom</groupId>
-    <artifactId>spring-cloud-stusy</artifactId>
+    <artifactId>spring-cloud-study</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>spring-cloud-demo</module>
+        <module>spring-cloud-eureka-server</module>
+        <module>spring-cloud-ribbon-consumer</module>
+    </modules>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
