@@ -13,6 +13,8 @@
         <module>spring-cloud-demo</module>
         <module>spring-cloud-eureka-server</module>
         <module>spring-cloud-ribbon-consumer</module>
+        <module>spring-cloud-hystrix-dashboard</module>
+        <module>spring-cloud-turbine</module>
     </modules>
 
     <dependencies>

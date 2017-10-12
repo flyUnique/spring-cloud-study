@@ -1,6 +1,5 @@
 package com.cfoom.springcloudribbonconsumer.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +45,6 @@ public class DemoService {
 			url += "?" + idList.stream().map(id -> "idList[]=" + id).collect(Collectors.joining("&"));
 		}
 		log.info("collapser invoked , url is {}", url);
-		return restTemplate.getForEntity(url, ArrayList.class).getBody();
+		return restTemplate.getForEntity(url, List.class).getBody();
 	}
 }
