@@ -15,6 +15,9 @@
         <module>spring-cloud-ribbon-consumer</module>
         <module>spring-cloud-hystrix-dashboard</module>
         <module>spring-cloud-turbine</module>
+        <module>spring-cloud-feign-consumer</module>
+        <module>spring-cloud-turbine-amqp</module>
+        <module>spring-cloud-zuul</module>
     </modules>
 
     <dependencies>
