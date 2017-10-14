@@ -1,6 +1,7 @@
 package com.cfoom.springcloudzuul.filter;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,7 @@ import org.springframework.web.util.WebUtils;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -15,36 +17,36 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Component
 @Slf4j
-public class AccessFilter extends ZuulFilter{
-	@Override
+public class AccessFilter extends ZuulFilter {
+    @Override
 	public String filterType() {
-		return "pre";
-	}
+        return "pre";
+    }
 
-	@Override
-	public int filterOrder() {
-		return 0;
-	}
+    @Override
+    public int filterOrder() {
+        return 0;
+    }
 
-	@Override
-	public boolean shouldFilter() {
-		return true;
-	}
+    @Override
+    public boolean shouldFilter() {
+        return true;
+    }
 
-	@Override
-	public Object run() {
-		RequestContext context = RequestContext.getCurrentContext();
-		HttpServletRequest request = context.getRequest();
-		log.info("send {} to request {}", request.getMethod(), request.getRequestURL().toString());
+    @Override
+    public Object run() {
+        RequestContext context = RequestContext.getCurrentContext();
+        HttpServletRequest request = context.getRequest();
+        log.info("send {} to request {}", request.getMethod(), request.getRequestURL().toString());
 
-		String token = WebUtils.findParameterValue(request, "token");
-		if (StringUtils.isBlank(token)) {
-			log.warn("access token is empty!!!");
-			context.setSendZuulResponse(false);
-			context.setResponseStatusCode(401);
-			return null;
-		}
-		log.info("access pass!!!");
-		return null;
-	}
+        String token = WebUtils.findParameterValue(request, "token");
+        if (StringUtils.isBlank(token)) {
+            log.warn("access token is empty!!!");
+            context.setSendZuulResponse(false);
+            context.setResponseStatusCode(HttpServletResponse.SC_UNAUTHORIZED);
+            return null;
+        }
+        log.info("access pass!!!");
+        return null;
+    }
 }
